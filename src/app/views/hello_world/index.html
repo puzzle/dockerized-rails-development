@@ -1,0 +1,14 @@
+<h1>I live inside containers.</h1>
+<p>
+  According to the moment.js dependency managed by yarn, it's
+  <div id="time"></div>
+</p>
+<script>
+ let element = document.querySelector('#time');
+ let render = () => {
+   element.innerHTML = moment().format();
+   setTimeout(render, 100);
+ }
+
+ render()
+</script>

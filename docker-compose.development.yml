@@ -6,8 +6,31 @@ services:
     build: ./images/ruby
     volumes:
       - ./src:/opt/src
+      - ./volumes/yarn-cache-dev:/opt/src/node_modules
       - ./volumes/bundler-cache-dev:/usr/local/bundle
       - ./volumes/rails-history-dev:/opt/history
+    command: bundle exec puma -p 3000
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - RAILS_DB_ADAPTER=postgresql
+      - RAILS_DB_HOST=database
+      - RAILS_DB_PORT=5432
+      - RAILS_DB_NAME=database
+      - RAILS_DB_USERNAME=user
+      - RAILS_DB_PASSWORD=bogus_password
+      - HISTFILE=/opt/history/bash_history
+    depends_on:
+      - database
+  yarn:
+    image: ${DOCKER_IMAGE_NAMESPACE}/yarn
+    user: ${USER_ID}:${GROUP_ID}
+    build: ./images/yarn
+    volumes:
+      - ./src:/opt/src
+      - ./volumes/yarn-cache-dev:/opt/src/node_modules
+      - ./volumes/yarn-history-dev:/opt/history
     command: bundle exec puma -p 3000
     ports:
       - "3000:3000"

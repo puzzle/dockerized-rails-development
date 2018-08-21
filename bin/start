@@ -8,4 +8,4 @@ cd $(dirname $0)/..
 
 . bin/source_env "$environment"
 
-docker-compose up -d
+docker-compose up -d rails database

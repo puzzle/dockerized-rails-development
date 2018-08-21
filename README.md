@@ -2,7 +2,7 @@
 
 # About
 
-This setup lets you develop a rails application on any machine with Docker and Bash.
+This setup lets you develop a rails application on any machine with Docker, [docker-compose](https://docs.docker.com/compose/install/) and Bash.
 The technique is adaptable for other web stacks (think Node, PHP, ...).
 
 # Setup

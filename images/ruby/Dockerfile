@@ -4,4 +4,6 @@ ARG USER_ID=1000
 
 RUN useradd -u $USER_ID -m -U -d /home/app app
 
+USER app
+
 WORKDIR /opt/src

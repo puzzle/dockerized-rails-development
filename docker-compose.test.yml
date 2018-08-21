@@ -5,7 +5,7 @@ services:
     user: ${USER_ID}:${GROUP_ID}
     build: ./images/ruby
     volumes:
-      - ./:/opt/src
+      - ./src:/opt/src
       - ./volumes/bundler-cache-dev:/usr/local/bundle
       - ./volumes/rails-history-test:/opt/history
     environment:
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./volumes/postgres-pgdata-test:/var/lib/postgresql/data/pgdata
     environment:
-      - POSTGRES_PASSWORD=jT3y24uj7xGd1Iuhl6Z533024r563n
+      - POSTGRES_PASSWORD=bogus_password
       - POSTGRES_USER=user
       - POSTGRES_DB=database
       - PGDATA=/var/lib/postgresql/data/pgdata

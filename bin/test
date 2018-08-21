@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $0)/..
+
+bin/start test
+
+. bin/source_env test
+docker-compose run rails rails test

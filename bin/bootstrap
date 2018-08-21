@@ -21,6 +21,7 @@ ls -al volumes/
 
 section "Installing dependencies"
 docker-compose run rails bundle install
+docker-compose run yarn yarn install
 
 section "Setting up database"
 docker-compose run rails rails db:setup
