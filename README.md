@@ -106,7 +106,7 @@ To get things running without an existing app, do
     
     docker-compose run rails bash
     
-No you're in a bash shell inside a Ruby enabled container. On we go:
+Now you're in a bash shell inside a Ruby enabled container. On we go:
 
     gem install rails
     rails new . --database=postgresql --skip-git
