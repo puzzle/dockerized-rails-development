@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e
+
+if (( $# != 2 )); then
+    echo "Usage: apply_dump ENV DUMP_PATH"
+    exit 1
+fi
+
+environment="$1"
+dump="$2"
+
+if [[ ! -f "$dump" ]]; then
+    echo "No file at $dump"
+    exit 2
+fi
+
+cd $(dirname $0)/..
+
+. bin/source_env "$environment"
+
+echo "Stopping $environment environment, starting database"
+bin/stop "$environment"
+docker-compose up -d database
+database=$(docker-compose ps -q database)
+
+echo "Copying the dump"
+time docker cp "$dump" "$database:/tmp/upload.sql.gz"
+
+echo "Applying the dump"
+time docker exec $database bash -c '
+    set -e
+    export PGPASSWORD=$POSTGRES_PASSWORD
+    psql -U $POSTGRES_USER $POSTGRES_DB < <(zcat /tmp/upload.sql.gz) > /dev/null 2>&1
+    rm /tmp/upload.sql.gz
+'
+echo "Starting $environment environment"
+bin/start "$environment"
+
+echo "Done."

@@ -7,6 +7,11 @@ The technique is adaptable for other web stacks (think Node, PHP, ...).
 
 # Setup
 
+Make sure you've installed
+
+* Docker
+* [docker-compose](https://docs.docker.com/compose/install/)
+
 Clone the source, then
 
     bin/bootstrap
@@ -16,19 +21,21 @@ You can now browse the app by visiting `http://localhost:3000/`
 
 # Getting started / useful commands
 
-| Command                                   | Purpose                                                                                  |
-| -------                                   | -------                                                                                  |
-| `bin/source_env development`              | Switch to the development environment                                                    |
-| `bin/start development`                   | Start the development environment                                                        |
-| `bin/stop development`                    | Stop the development environment                                                         |
-| `bin/restart development`                 | Restart the development environment                                                      |
-| `bin/test`                                | Run the tests                                         |
-| `docker-compose ps`                       | Show the running containers                                                              |
-| `docker-compose logs -f rails`            | Follow the rails log                                                                     |
-| `docker-compose run rails rails c`        | Run the rails console in a new container (you can run all rails tasks like this)         |
-| `docker-compose run rails bundle install` | Install the bundle                                                                       |
-| `docker-compose exec rails bash`          | Start a bash inside the running rails container (you will see the rails process with ps) |
-| `docker-compose run yarn yarn add moment` | Install a node module                                                                    |
+| Command                                            | Purpose                                                                                  |
+| -------                                            | -------                                                                                  |
+| `bin/source_env development`                       | Switch to the development environment                                                    |
+| `bin/start development`                            | Start the development environment                                                        |
+| `bin/stop development`                             | Stop the development environment                                                         |
+| `bin/restart development`                          | Restart the development environment                                                      |
+| `bin/test`                                         | Run the tests                                                                            |
+| `bin/dump_database development`                    | Dump the development database                                                            |
+| `bin/load_database_dump development dump.sql.gzip` | Load a dump into the development database                                                |
+| `docker-compose ps`                                | Show the running containers                                                              |
+| `docker-compose logs -f rails`                     | Follow the rails log                                                                     |
+| `docker-compose run rails rails c`                 | Run the rails console in a new container (you can run all rails tasks like this)         |
+| `docker-compose run rails bundle install`          | Install the bundle                                                                       |
+| `docker-compose exec rails bash`                   | Start a bash inside the running rails container (you will see the rails process with ps) |
+| `docker-compose run yarn yarn add moment`          | Install a node module                                                                    |
 
 # Concepts
 

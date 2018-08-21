@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -e
+
+if (( $# != 1 )); then
+    echo "Usage: dump_database ENV"
+    exit 1
+fi
+
+environment="$1"
+
+cd $(dirname $0)/..
+
+. bin/source_env "$environment"
+
+docker-compose up -d database
+
+database=$(docker-compose ps -q database)
+
+printf "\nPulling dump of $environment database"
+time docker exec "$database" bash -c '
+    set -e
+    export PGPASSWORD=$POSTGRES_PASSWORD
+    pg_dump -U $POSTGRES_USER $POSTGRES_DB > /tmp/dump.sql
+'
+
+mkdir -p dumps
+target=dumps/$(date "+%F-%H-%M").sql
+docker cp "$database":/tmp/dump.sql $target
+docker exec "$database" rm /tmp/dump.sql
+
+gzip -f $target
+
+printf "\nls -ltr dumps:\n"
+ls -ltr dumps
