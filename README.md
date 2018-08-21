@@ -91,7 +91,7 @@ Maybe it would just be a matter of using docker volumes correctly...
 * This setup prevents you from using spring. One approach to solving this would be to start a container 
   running spring for both environments, then rewire the scripts to run all rails commands in it,
   e.g. `docker-compose exec spring rails s`
-* What will bundle open do? Can we extract the path to the relevant gem inside the container with bundler,
+* What will `bundle open` do? Can we extract the path to the relevant gem inside the container with bundler,
   then pass it locally to `xdg-open` to get the same behaviour?
 
 # Big bang: Generating the rails app
