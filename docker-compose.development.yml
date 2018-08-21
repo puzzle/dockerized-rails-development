@@ -9,6 +9,7 @@ services:
       - ./volumes/yarn-cache-dev:/opt/src/node_modules
       - ./volumes/bundler-cache-dev:/usr/local/bundle
       - ./volumes/rails-history-dev:/opt/history
+      - ./volumes/rails-temp-dev:/opt/src/tmp
     command: bundle exec puma -p 3000
     ports:
       - "3000:3000"

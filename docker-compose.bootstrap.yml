@@ -9,10 +9,17 @@ services:
       '
     volumes:
       - ./volumes/postgres-pgdata-dev:/opt/volumes/postgres/postgres-pgdata-dev
+      - ./volumes/postgres-pgdata-test:/opt/volumes/postgres/postgres-pgdata-test
+
       - ./volumes/bundler-cache-dev:/opt/volumes/user/bundler-cache-dev
       - ./volumes/yarn-cache-dev:/opt/volumes/user/yarn-cache-dev
+
       - ./volumes/rails-history-dev:/opt/volumes/user/rails-history-dev
       - ./volumes/yarn-history-dev:/opt/volumes/user/yarn-history-dev
       - ./volumes/rails-history-test:/opt/volumes/user/rails-history-test
       - ./volumes/yarn-history-test:/opt/volumes/user/yarn-history-test
+
+      - ./volumes/rails-temp-test:/opt/volumes/user/rails-temp-test
+      - ./volumes/rails-temp-dev:/opt/volumes/user/rails-temp-dev
+
       - ./src:/opt/volumes/user/src

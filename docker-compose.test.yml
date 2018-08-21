@@ -8,6 +8,7 @@ services:
       - ./src:/opt/src
       - ./volumes/bundler-cache-dev:/usr/local/bundle
       - ./volumes/rails-history-test:/opt/history
+      - ./volumes/rails-temp-test:/opt/src/tmp
     environment:
       - RAILS_ENV=test
       - RAILS_DB_ADAPTER=postgresql
