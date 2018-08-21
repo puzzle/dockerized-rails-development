@@ -26,7 +26,7 @@ This repo contains a generated rails app. To generate the app without having to 
 No you're in a bash shell inside a Ruby enabled container. On we go:
 
     gem install rails
-    rails new . --database=postgresql
+    rails new . --database=postgresql --skip-git
     
 Leave the shell (Ctrl + D)
 
