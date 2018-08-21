@@ -1,4 +1,4 @@
-FROM ruby:2.2-jessie
+FROM ruby:2.5-stretch
 
 ARG USER_ID=1000
 
