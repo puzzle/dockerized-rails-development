@@ -36,6 +36,8 @@ You can now browse the app by visiting `http://localhost:3000/`
 | `docker-compose run rails bundle install`          | Install the bundle                                                                       |
 | `docker-compose exec rails bash`                   | Start a bash inside the running rails container (you will see the rails process with ps) |
 | `docker-compose run yarn yarn add moment`          | Install a node module                                                                    |
+| `docker ps`                                        | Show all containers running on your system                                               |
+| `docker stop $(docker ps -q)`                      | Stop all containers running on your system                                               |
 
 # Concepts
 
