@@ -5,7 +5,7 @@ services:
     user: ${USER_ID}:${GROUP_ID}
     build: ./images/ruby
     volumes:
-      - ./:/opt/src
+      - ./src:/opt/src
       - ./volumes/bundler-cache-dev:/usr/local/bundle
       - ./volumes/rails-history-dev:/opt/history
     command: bundle exec puma -p 3000

@@ -12,3 +12,4 @@ services:
       - ./volumes/bundler-cache-dev:/opt/volumes/user/bundler-cache-dev
       - ./volumes/rails-history-dev:/opt/volumes/user/rails-history-dev
       - ./volumes/rails-history-test:/opt/volumes/user/rails-history-test
+      - ./src:/opt/volumes/user/src
