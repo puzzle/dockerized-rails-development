@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+environment="$1"
+
+cd $(dirname $0)/..
+
+. bin/source_env "$environment"
+
+docker-compose down

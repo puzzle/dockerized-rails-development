@@ -1,0 +1,14 @@
+version: '3'
+services:
+  set-volume-permissions:
+    image: busybox
+    command: |-
+      sh -c '
+        chown -R ${USER_ID}:${GROUP_ID} /opt/volumes/user &&
+        chown -R 999:999 /opt/volumes/postgres
+      '
+    volumes:
+      - ./volumes/postgres-pgdata-dev:/opt/volumes/postgres/postgres-pgdata-dev
+      - ./volumes/bundler-cache-dev:/opt/volumes/user/bundler-cache-dev
+      - ./volumes/rails-history-dev:/opt/volumes/user/rails-history-dev
+      - ./volumes/rails-history-test:/opt/volumes/user/rails-history-test

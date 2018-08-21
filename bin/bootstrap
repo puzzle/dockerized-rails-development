@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $0)/..
+
+section() {
+    printf "\n\n# $1\n\n"
+}
+
+section "Creating volumes"
+mkdir -p volumes
+
+. ./bin/source_env bootstrap
+docker-compose run set-volume-permissions
+
+printf "volumes/:\n"
+ls -al volumes/
+
+. ./bin/source_env development
+
+section "Installing dependencies"
+docker-compose run rails bundle install
+
+section "Setting up database"
+docker-compose run rails rails db:setup
+
+printf "\n\nAll done.\n"

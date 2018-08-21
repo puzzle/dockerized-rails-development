@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Creates folders for persistent docker volumes with the correct permissions.
+#
+# Use this once to set up your development workspace.
+
+set -ex
+
+cd $(dirname $0)/..
+
+mkdir -p volumes
+cd volumes
+
+mkdir -p bundler-cache-dev \
+         {node,hugo}-history-dev

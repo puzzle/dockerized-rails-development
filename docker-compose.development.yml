@@ -1,0 +1,33 @@
+version: '3'
+services:
+  rails:
+    image: ${DOCKER_IMAGE_NAMESPACE}/ruby
+    user: ${USER_ID}:${GROUP_ID}
+    build: ./images/ruby
+    volumes:
+      - ./:/opt/src
+      - ./volumes/bundler-cache-dev:/usr/local/bundle
+      - ./volumes/rails-history-dev:/opt/history
+    command: bundle exec puma -p 3000
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - RAILS_DB_ADAPTER=postgresql
+      - RAILS_DB_HOST=database
+      - RAILS_DB_PORT=5432
+      - RAILS_DB_NAME=database
+      - RAILS_DB_USERNAME=user
+      - RAILS_DB_PASSWORD=bogus_password
+      - HISTFILE=/opt/history/bash_history
+    depends_on:
+      - database
+  database:
+    image: postgres:10.5
+    volumes:
+      - ./volumes/postgres-pgdata-dev:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_PASSWORD=bogus_password
+      - POSTGRES_USER=user
+      - POSTGRES_DB=database
+      - PGDATA=/var/lib/postgresql/data/pgdata

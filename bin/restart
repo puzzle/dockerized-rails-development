@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+environment="$1"
+
+cd $(dirname $0)/..
+
+bin/stop "$environment"
+bin/start "$environment"

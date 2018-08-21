@@ -1,0 +1,30 @@
+version: '3'
+services:
+  rails:
+    image: ${DOCKER_IMAGE_NAMESPACE}/ruby
+    user: ${USER_ID}:${GROUP_ID}
+    build: ./images/ruby
+    volumes:
+      - ./:/opt/src
+      - ./volumes/bundler-cache-dev:/usr/local/bundle
+      - ./volumes/rails-history-test:/opt/history
+    environment:
+      - RAILS_ENV=test
+      - RAILS_DB_ADAPTER=postgresql
+      - RAILS_DB_HOST=database
+      - RAILS_DB_PORT=5432
+      - RAILS_DB_NAME=database
+      - RAILS_DB_USERNAME=user
+      - RAILS_DB_PASSWORD=bogus_password
+      - HISTFILE=/opt/history/bash_history
+    depends_on:
+      - database
+  database:
+    image: postgres:10.5
+    volumes:
+      - ./volumes/postgres-pgdata-test:/var/lib/postgresql/data/pgdata
+    environment:
+      - POSTGRES_PASSWORD=jT3y24uj7xGd1Iuhl6Z533024r563n
+      - POSTGRES_USER=user
+      - POSTGRES_DB=database
+      - PGDATA=/var/lib/postgresql/data/pgdata
