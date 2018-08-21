@@ -1,0 +1,14 @@
+global: &global
+  adapter: <%= ENV['RAILS_DB_ADAPTER'] || 'postgresql' %>
+  encoding: unicode
+  database: <%= ENV['RAILS_DB_NAME'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['RAILS_DB_USERNAME'] %>
+  password: <%= ENV['RAILS_DB_PASSWORD'] %>
+  host: <%= ENV['RAILS_DB_HOST'] %>
+  port: <%= ENV['RAILS_DB_PORT'] %>
+  min_messages: warning
+
+development: *global
+test: *global
+production: *global
