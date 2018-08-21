@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Sets the necessary environment variables for
+# the environments' docker compose file.
+
+[[ $0 != "$BASH_SOURCE" ]] && sourced=1 || sourced=0
+
+if (( $# != 1 || $sourced == 0)); then
+    echo "Usage: . source_env ENVIRONMENT"
+
+    if (( $sourced == 1 )); then
+        return 1
+    else
+        exit 1
+    fi
+fi
+
+environment="$1"
+
+compose_file="docker-compose.$environment.yml"
+if [[ ! -f "$compose_file" ]]; then
+    echo "Unknown environment $environment"
+    return 1
+fi
+
+project_name="dockerized-rails"
+
+export COMPOSE_FILE=$(realpath "$compose_file")
+export COMPOSE_PROJECT_NAME="${project_name}_${environment}"
+export DOCKER_IMAGE_NAMESPACE="$project_name"
+
+export USER_ID=$(id -u)
+export GROUP_ID=$(id -g)
+
