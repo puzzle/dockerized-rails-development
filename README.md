@@ -21,7 +21,7 @@ You can now browse the app by visiting `http://localhost:3000/`
 There is a *development* and a *testing* environment, implemented as separate sets of containers.
 
 You can start and stop these environments. It's also possible to inspect each environment and perform 
-commandline task.
+commandline tasks inside the containers.
 
 * To start an environment: `bin/start development` or `bin/start test`
 * To stop an environment: `bin/stop development` or `bin/stop test`
@@ -34,7 +34,9 @@ Have a look at what the scripts are doing, there's no rocket science involved.
 All files created by the containers will belong to you. This means you can do all editing and browsing with
 your favorite tools that you install and configure locally.
 
-All Docker images are built to contain a user whose id and primary group id are the same as your users'.
+To achieve correct ownership, most Docker images contain a user `app` whose id 
+and primary group id are the same as your users'. Processes in those containers (such as `rails s`) will belong to `app`.
+`app`, having the same uid/gid as you have, is effectively an alias of your user.
 
 ## Volumes
 
@@ -48,6 +50,12 @@ Volumes include
 
 Volumes need to have correct permissions set so both you and the containers can access them. 
 This bootstrapping is done via `bin/bootstrap` -> `docker-compose.bootstrap.yml`
+
+Having all state in volumes also means you can reliably recreate the situation on your device 
+otherwhere by checking out the same commit on another device and copying your `volumes` 
+directory there.
+
+### Why not docker volumes?
 
 Docker also has an [approach to volumes](https://docs.docker.com/storage/volumes/) - the implemented
 alternative seems to facilitate inspecting volume contents, measuring volume size and cleaning up.
