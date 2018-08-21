@@ -14,6 +14,22 @@ Clone the source, then
 
 You can now browse the app by visiting `http://localhost:3000/`
 
+# Getting started / useful commands
+
+| Command                                   | Purpose                                                                                  |
+| -------                                   | -------                                                                                  |
+| `bin/source_env development`              | Switch to the development environment                                                    |
+| `bin/start development`                   | Start the development environment                                                        |
+| `bin/stop development`                    | Stop the development environment                                                         |
+| `bin/restart development`                 | Restart the development environment                                                      |
+| `bin/test`                                | Run the tests                                         |
+| `docker-compose ps`                       | Show the running containers                                                              |
+| `docker-compose logs -f rails`            | Follow the rails log                                                                     |
+| `docker-compose run rails rails c`        | Run the rails console in a new container (you can run all rails tasks like this)         |
+| `docker-compose run rails bundle install` | Install the bundle                                                                       |
+| `docker-compose exec rails bash`          | Start a bash inside the running rails container (you will see the rails process with ps) |
+| `docker-compose run yarn yarn add moment` | Install a node module                                                                    |
+
 # Concepts
 
 ## Environment
@@ -60,22 +76,6 @@ directory there.
 Docker also has an [approach to volumes](https://docs.docker.com/storage/volumes/) - the implemented
 alternative seems to facilitate inspecting volume contents, measuring volume size and cleaning up.
 Maybe it would just be a matter of using docker volumes correctly...
-
-# Getting started / useful commands
-
-| Command                                   | Purpose                                                                                  |
-| -------                                   | -------                                                                                  |
-| `bin/source_env development`              | Switch to the development environment                                                    |
-| `bin/start development`                   | Start the development environment                                                        |
-| `bin/stop development`                    | Stop the development environment                                                         |
-| `bin/restart development`                 | Restart the development environment                                                      |
-| `bin/test`                                | Run the tests                                         |
-| `docker-compose ps`                       | Show the running containers                                                              |
-| `docker-compose logs -f rails`            | Follow the rails log                                                                     |
-| `docker-compose run rails rails c`        | Run the rails console in a new container (you can run all rails tasks like this)         |
-| `docker-compose run rails bundle install` | Install the bundle                                                                       |
-| `docker-compose exec rails bash`          | Start a bash inside the running rails container (you will see the rails process with ps) |
-| `docker-compose run yarn yarn add moment` | Install a node module                                                                    |
 
 # Caveats / further possibilities for improvement
 
