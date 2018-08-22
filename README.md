@@ -91,6 +91,12 @@ Maybe it would just be a matter of using docker volumes correctly...
   e.g. `docker-compose exec spring rails s`
 * What will `bundle open` do? Can we extract the path to the relevant gem inside the container with bundler,
   then pass it locally to `xdg-open` to get the same behaviour?
+  
+# Contributing
+
+At the moment, this primarily showcases a dockerized environment. We're open to let it become more.
+
+So if you base your setup on this and discover any improvements to either the architecture or the process of setting this up for your project - let's look at it together! Please open an issue.
 
 # Big bang: Generating the rails app
 
