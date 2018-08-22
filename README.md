@@ -1,7 +1,5 @@
 # A self-contained rails development environment
 
-# About
-
 This setup lets you develop a rails application on any machine with Docker, [docker-compose](https://docs.docker.com/compose/install/) and Bash.
 The technique is adaptable for other web stacks (think Node, PHP, ...).
 
@@ -106,7 +104,7 @@ To get things running without an existing app, do
     
     docker-compose run rails bash
     
-No you're in a bash shell inside a Ruby enabled container. On we go:
+Now you're in a bash shell inside a Ruby enabled container. On we go:
 
     gem install rails
     rails new . --database=postgresql --skip-git
