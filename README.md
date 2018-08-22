@@ -43,7 +43,7 @@ You can now browse the app by visiting `http://localhost:3000/`
 
 There is a *development* and a *testing* environment, implemented as separate sets of containers.
 
-You can start and stop these environments. It's also possible to inspect each environment and perform 
+You can start and stop these environments. It's also possible to inspect each environment and perform
 commandline tasks inside the containers.
 
 * To start an environment: `bin/start development` or `bin/start test`
@@ -57,7 +57,7 @@ Have a look at what the scripts are doing, there's no rocket science involved.
 All files created by the containers will belong to you. This means you can do all editing and browsing with
 your favorite tools that you install and configure locally.
 
-To achieve correct ownership, most Docker images contain a user `app` whose id 
+To achieve correct ownership, most Docker images contain a user `app` whose id
 and primary group id are the same as your users'. Processes in those containers (such as `rails s`) will belong to `app`.
 `app`, having the same uid/gid as you have, is effectively an alias of your user.
 
@@ -71,11 +71,11 @@ Volumes include
 * Gems, Node modules
 * Separate history files for the shells of each container
 
-Volumes need to have correct permissions set so both you and the containers can access them. 
+Volumes need to have correct permissions set so both you and the containers can access them.
 This bootstrapping is done via `bin/bootstrap` -> `docker-compose.bootstrap.yml`
 
-Having all state in volumes also means you can reliably recreate the situation on your device 
-otherwhere by checking out the same commit on another device and copying your `volumes` 
+Having all state in volumes also means you can reliably recreate the situation on your device
+otherwhere by checking out the same commit on another device and copying your `volumes`
 directory there.
 
 ### Why not docker volumes?
@@ -86,12 +86,12 @@ Maybe it would just be a matter of using docker volumes correctly...
 
 # Caveats / further possibilities for improvement
 
-* This setup prevents you from using spring. One approach to solving this would be to start a container 
+* This setup prevents you from using spring. One approach to solving this would be to start a container
   running spring for both environments, then rewire the scripts to run all rails commands in it,
   e.g. `docker-compose exec spring rails s`
 * What will `bundle open` do? Can we extract the path to the relevant gem inside the container with bundler,
   then pass it locally to `xdg-open` to get the same behaviour?
-  
+
 # Contributing
 
 At the moment, this primarily showcases a dockerized environment. We're open to let it become more.
@@ -107,14 +107,14 @@ To get things running without an existing app, do
 
     bin/bootstrap # this will fail when trying to install the gems
     . bin/source_env development
-    
+
     docker-compose run rails bash
-    
+
 Now you're in a bash shell inside a Ruby enabled container. On we go:
 
     gem install rails
     rails new . --database=postgresql --skip-git
-    
+
 Leave the shell (Ctrl + D)
 
 Make sure the database connection infos are read from the environment variables (see [database.yml](src/config/database.yml)) and finish boostrapping:
@@ -122,13 +122,13 @@ Make sure the database connection infos are read from the environment variables 
 Starting from there, you can use
 
     bin/start development
-    
+
 to start your environment. Have a look at the logs:
 
     . bin/source_env development
     docker-compose logs rails
 
-Rails might complain about a missing Javascript engine. If so, add `therubyracer` to your Gemfile and 
+Rails might complain about a missing Javascript engine. If so, add `therubyracer` to your Gemfile and
 
     . bin/source_env development
     docker-compose run rails bundle install
