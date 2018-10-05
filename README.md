@@ -103,7 +103,7 @@ So if you base your setup on this and discover any improvements to either the ar
 This repo already contains a generated rails app. The following information is intended as an example
 of how to start a project without ever installing the necessary dependencies locally.
 
-To get things running without an existing app, do
+To get things running without an existing app (meaning the `src` directory is empty), do
 
     bin/bootstrap # this will fail when trying to install the gems
     . bin/source_env development
