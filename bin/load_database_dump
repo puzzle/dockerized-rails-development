@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+source $(dirname $0)/_basics
 
 if (( $# != 2 )); then
     echo "Usage: apply_dump ENV DUMP_PATH"
@@ -14,8 +14,6 @@ if [[ ! -f "$dump" ]]; then
     echo "No file at $dump"
     exit 2
 fi
-
-cd $(dirname $0)/..
 
 . bin/source_env "$environment"
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+source $(dirname $0)/_basics
 
 if (( $# != 1 )); then
     echo "Usage: dump_database ENV"
@@ -8,8 +8,6 @@ if (( $# != 1 )); then
 fi
 
 environment="$1"
-
-cd $(dirname $0)/..
 
 . bin/source_env "$environment"
 

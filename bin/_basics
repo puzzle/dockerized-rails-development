@@ -1,0 +1,7 @@
+set -e
+
+section() {
+    printf "\n\n# $1\n\n"
+}
+
+cd $(dirname $0)/..
