@@ -21,7 +21,7 @@ You can now browse the app by visiting `http://localhost:3000/`
 
 | Command                                            | Purpose                                                                                  |
 | -------                                            | -------                                                                                  |
-| `bin/source_env development`                       | Switch to the development environment                                                    |
+| `. bin/source_env development`                     | Switch to the development environment                                                    |
 | `bin/start development`                            | Start the development environment                                                        |
 | `bin/stop development`                             | Stop the development environment                                                         |
 | `bin/restart development`                          | Restart the development environment                                                      |
